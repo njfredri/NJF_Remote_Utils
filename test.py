@@ -8,4 +8,8 @@ ssh = input('please input ssh server')
 
 test_dir = os.path.join('/home', username, 'testdir')
 
-RemoteUtils.run_cmd('echo hello', username='njfredri', remote_host='turing.csce.uark.edu', remotedir=test_dir)
+RemoteUtils.run_cmd('echo hello', username=username, remote_host=ssh, remotedir=test_dir)
+
+RemoteUtils.run_cmds(['echo hello','echo here', 'echo last'], username=username, remote_host=ssh, remotedir=test_dir)
+
+RemoteUtils.copyFileToServer('./testthing.txt', '/home/njfredri/test', username=username, remote_host=ssh)

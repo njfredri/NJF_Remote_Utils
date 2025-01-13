@@ -13,14 +13,48 @@ class RemoteUtils:
             sshpass = 'sshpass -p' + "'" + remote_password + "'"
             ssh_call = sshpass + ' ' + ssh_call
         
+        command = cmd_str
+        
+        if remotedir != None:
+            command = 'cd ' + remotedir + '; ' + command
+        
         print(ssh_call)
-        # subprocess.call(cmd_str,shell=True,executable="/bin/bash")
+        sshcommand = ssh_call + " '" + command + "' "
+        print(sshcommand)
+        subprocess.call(sshcommand,shell=True,executable="/bin/bash")
+    
+    def run_cmds(cmds: list, username, remote_host, remote_password:str = None, remotedir:str = None):
+        """
+        runs command string in a remote bash shell
+        """
+        print("Command: %s" %(str(cmds)))
+        
+        ssh_call = 'ssh ' + username + '@' + remote_host
+        if remote_password != None:
+            sshpass = 'sshpass -p' + "'" + remote_password + "'"
+            ssh_call = sshpass + ' ' + ssh_call
+        
+        command = ''
+        
+        for cmd in cmds:
+            command = command + cmd + '; '
+        
+        if remotedir != None:
+            command = 'cd ' + remotedir + '; ' + command
+        
+        print(ssh_call)
+        sshcommand = ssh_call + " '" + command + "' "
+        print(sshcommand)
+        subprocess.call(sshcommand,shell=True,executable="/bin/bash")
+
+    
+    # def run_commands
 
     def copyFileToServer(file, remotedir, username, remote_host, remote_password:str = None):
         command = 'scp ' + file + ' ' + username + '@' + remote_host + ':' + remotedir
         if remote_password != None:
             command = 'sshpass -p ' + remote_host + ' ' + command
-        RemoteUtils.run_cmd(command)
+        subprocess.call(command,shell=True,executable="/bin/bash")
 
 
         
