@@ -1,5 +1,5 @@
 import subprocess
-
+import os
 
 class RemoteUtils:
     def run_cmd(cmd_str, username, remote_host, remote_password:str = None, remotedir:str = None):
@@ -56,5 +56,10 @@ class RemoteUtils:
             command = 'sshpass -p ' + remote_host + ' ' + command
         subprocess.call(command,shell=True,executable="/bin/bash")
 
-
+    def copyFileFromServer(filename, remotedir, localdir, username, remote_host, remote_password:str = None):
+        remotepath = os.path.join(remotedir, filename)
+        command = 'scp ' + username + '@' + remote_host + ':' + remotepath + ' ' + localdir
+        if remote_password != None:
+            command = 'sshpass -p ' + remote_host + ' ' + command
+        subprocess.call(command,shell=True,executable="/bin/bash")
         
