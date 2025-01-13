@@ -8,10 +8,12 @@ ssh = input('please input ssh server: ')
 
 test_dir = os.path.join('/home', username, 'testdir')
 
-RemoteUtils.run_cmd('echo hello', username=username, remote_host=ssh, remotedir=test_dir, remote_password=pwd)
+# RemoteUtils.run_cmd('echo hello', username=username, remote_host=ssh, remotedir=test_dir, remote_password=pwd)
 
-RemoteUtils.run_cmds(['echo hello','echo here', 'echo last'], username=username, remote_host=ssh, remotedir=test_dir, remote_password=pwd)
+# RemoteUtils.run_cmds(['echo hello','echo here', 'echo last'], username=username, remote_host=ssh, remotedir=test_dir, remote_password=pwd)
 
-RemoteUtils.copyFileToServer('./testthing.txt', '/home/njfredri/test', username=username, remote_host=ssh, remote_password=pwd)
+# RemoteUtils.copyFileToServer('./testthing.txt', '/home/njfredri/test', username=username, remote_host=ssh, remote_password=pwd)
 
-RemoteUtils.copyFileFromServer('output.txt', '/home/njfredri/', './output.txt', username=username, remote_host=ssh, remote_password=pwd)
+# RemoteUtils.copyFileFromServer('output.txt', '/home/njfredri/', './output.txt', username=username, remote_host=ssh, remote_password=pwd)
+
+RemoteUtils.copyDirToServer('./testdir', '/home/njfredri/test/test2', username=username, remote_host=ssh, remote_password=pwd)
