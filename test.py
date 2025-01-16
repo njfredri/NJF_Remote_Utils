@@ -16,4 +16,6 @@ test_dir = os.path.join('/home', username, 'testdir')
 
 # RemoteUtils.copyFileFromServer('output.txt', '/home/njfredri/', './output.txt', username=username, remote_host=ssh, remote_password=pwd)
 
-RemoteUtils.copyDirToServer('./testdir', '/home/njfredri/test/test2', username=username, remote_host=ssh, remote_password=pwd)
+# RemoteUtils.copyDirToServer('./testdir', '/home/njfredri/test/test2', username=username, remote_host=ssh, remote_password=pwd)
+
+RemoteUtils.copyDirFromServer('/home/njfredri/test', '.', username=username, remote_host=ssh)
